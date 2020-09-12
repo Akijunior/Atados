@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+
+  db:
+    container_name: "db_atados"
+    image: postgres
+    env_file:
+    - config/db/atados_env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+    - "5433:5432"
+
+  web:
+    container_name: "api_atados"
+    build: .
+    command: sh /webapps/commands/startup.sh
+    volumes:
+      - .:/webapps
+    ports:
+      - "5440:5440"
+    links:
+      - db
+    depends_on:
+      - db
+
+volumes:
+  db-data:
