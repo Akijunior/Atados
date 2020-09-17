@@ -70,8 +70,8 @@ em fins de adição de novas instâncias de ação e voluntário no sistema.
 * **/api/v1/acoes/ -** Para ter acesso ao CRUD geral de ação.
 * **api/v1/voluntarios/ -** Para ter acesso ao CRUD geral de voluntário.
 
-Para a verificação dos testes basta seguir 
-com os procedimentos anteriormente descritos.
+Para mais informações sobre as rotas, acesse a documentação do sistema pelo
+[Postman](https://documenter.getpostman.com/view/4328408/TVKA5eVv).
 
 ## Feito com
 

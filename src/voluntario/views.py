@@ -13,7 +13,18 @@ class VoluntarioViewSet(viewsets.ModelViewSet):
 
     queryset = Voluntario.objects.all()
     serializer_class = VoluntarioListSerializer
-    permission_classes = [permissions.IsAuthenticated, ]
+
+    user_actions = ['create', 'destroy']
+    safe_actions = ['list', 'retrieve']
+
+    def get_permissions(self):
+        if self.action in self.user_actions:
+            self.permission_classes = [permissions.IsAuthenticated, ]
+        else:
+            self.permission_classes = [permissions.AllowAny, ]
+
+        return super(self.__class__, self).get_permissions()
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()

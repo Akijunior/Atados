@@ -9,7 +9,15 @@ class Voluntario(models.Model):
 
     nome = models.CharField("Primeiro nome", max_length=20)
     sobrenome = models.CharField("Restante do nome", max_length=80)
-    local = models.ForeignKey('acao.Endereco', on_delete=models.DO_NOTHING)
+    cidade = models.CharField("Cidade em que reside", max_length=80)
+    bairro = models.CharField("Bairro em que reside", max_length=80)
+
+    class Meta:
+
+        ordering = ["nome", ]
+
+    def __str__(self):
+        return f"{self.nome} {self.sobrenome}"
 
 
 @receiver(post_save, sender=User)

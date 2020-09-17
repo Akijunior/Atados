@@ -12,9 +12,10 @@ MIN_PASSWORD_LENGHT = 4
 
 
 class VoluntarioListSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Voluntario
-        fields = '__all__'
+        fields = "__all__"
 
 
 class Custom409(APIException):
