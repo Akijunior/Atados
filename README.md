@@ -7,7 +7,7 @@ inclusão de voluntários e ações sociais.
 
 ## Getting Started
 
-Para iniciar, realiza-se o clone do projeto na máquina local.
+Para iniciar, realiza-se a clonagem do projeto na máquina local.
 Após baixar o projeto, para executá-lo basta rodar o comando
 ```
 docker-compose up
@@ -32,33 +32,52 @@ para acesso e testes, conforme suas próprias regras.
 
 ## Executanto os testes
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+Para executar os testes, antes é preciso acessar o bash do Docker 
+referente a api. Para isso, com o container ainda rodando em outra janela, 
+basta executar o comando 
 ```
-Give an example
-```
+docker exec -it api_atados bash
+``` 
+que com isso terá acesso ao bash da api. Feito isso, 
+acessa-se a pasta **src** pelo terminal e após isso tem-se acesso aos 
+testes que podem ser executados das seguintes maneiras 
+seguindo de base os exemplos:
 
-### And coding style tests
+* **Todos disponíveis -** _python manage.py test --pattern="test\_*.py"_
+* **Por módulo -** _python manage.py test tests.autenticacao_
+* **Individual -** _python manage.py test tests.autenticacao.test_api_
 
-Explain what these tests test and why
+### Explicação dos testes
 
-```
-Give an example
-```
+Os testes feitos tem como base avaliar o CRUD geral das 
+rotas da aplicação, também verificando se as regras e políticas de 
+cada uma delas está sendo seguida devidamente.
+
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Para testa o sistema de forma local, realiza-se primeiro a clonagem 
+do projeto na máquina local.
+Após baixar o projeto, para executá-lo basta rodar o comando
+```
+docker-compose up
+``` 
+e então aguardar que o container docker suba, que logo então todas as 
+rotas e acessos da api estarão disponíveis para uso, que são:
+
+* **/api/v1/criar-usuario/ -** Para criar usuário que será utilizado 
+em fins de adição de novas instâncias de ação e voluntário no sistema.
+* **/api/v1/acoes/ -** Para ter acesso ao CRUD geral de ação.
+* **api/v1/voluntarios/ -** Para ter acesso ao CRUD geral de voluntário.
+
+Para a verificação dos testes basta seguir 
+com os procedimentos anteriormente descritos.
 
 ## Feito com
 
-* [Django](http://www.dropwizard.io/1.0.2/docs/) - Framework web escolhido para realização do desafio
-* [Docker](https://maven.apache.org/) - Forma de containerização
-* [Python](https://rometools.github.io/rome/) - Linguagem de programação utilizada
+* [Django](https://www.djangoproject.com/) - Framework web escolhido para realização do desafio
+* [Docker](https://www.docker.com/) - Forma de containerização
+* [Python](https://www.python.org/) - Linguagem de programação utilizada
 
 ## License
 
