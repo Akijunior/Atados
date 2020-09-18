@@ -14,7 +14,7 @@ class VoluntarioViewSet(viewsets.ModelViewSet):
     queryset = Voluntario.objects.all()
     serializer_class = VoluntarioListSerializer
 
-    user_actions = ['create', 'destroy']
+    user_actions = ['create', 'destroy', 'update']
     safe_actions = ['list', 'retrieve']
 
     def get_permissions(self):
@@ -25,6 +25,25 @@ class VoluntarioViewSet(viewsets.ModelViewSet):
 
         return super(self.__class__, self).get_permissions()
 
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', True)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance = self.get_object()
+            serializer = self.get_serializer(instance)
+
+        return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        serializer.save()
+
+    def partial_update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        return self.update(request, *args, **kwargs)
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()

@@ -14,3 +14,7 @@ class Acao(models.Model):
     cidade = models.CharField("Cidade em que reside", max_length=80)
     bairro = models.CharField("Bairro em que reside", max_length=80)
     endereco = models.CharField("Endereço em que reside", max_length=80, null=True, blank=True)
+
+    class Meta:
+
+        ordering = ["nome", "instituicao"]
