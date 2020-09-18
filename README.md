@@ -43,7 +43,7 @@ acessa-se a pasta **src** pelo terminal e após isso tem-se acesso aos
 testes que podem ser executados das seguintes maneiras 
 seguindo de base os exemplos:
 
-* **Todos disponíveis -** _python manage.py test --pattern="test\_*.py"_
+* **Todos disponíveis -** _python manage.py test --pattern="test\_*.py"_ ou apenas _python manage.py test tests_
 * **Por módulo -** _python manage.py test tests.autenticacao_
 * **Individual -** _python manage.py test tests.autenticacao.test_api_
 
@@ -70,6 +70,10 @@ em fins de adição de novas instâncias de ação e voluntário no sistema.
 * **/api/v1/acoes/ -** Para ter acesso ao CRUD geral de ação.
 * **api/v1/voluntarios/ -** Para ter acesso ao CRUD geral de voluntário.
 
+Os métodos referentes a listagem são de acesso livre, mas aqueles relacionados 
+a criação e atualização de registros necessitam de um Token para serem realizados
+devidamente. Para obter esse Token, basta criar um usuário pela rota de criação dos mesmos e, feito isso,
+ir na rota de geração de Token, passando o username do usuário (e-mail) e a senha.
 Para mais informações sobre as rotas, acesse a documentação do sistema pelo
 [Postman](https://documenter.getpostman.com/view/4328408/TVKA5eVv).
 
